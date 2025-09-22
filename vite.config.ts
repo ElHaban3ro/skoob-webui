@@ -7,8 +7,9 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    port: 3030,
-    host: '0.0.0.0'
+    port: 3000,
+    host: '0.0.0.0',
+    allowedHosts: ['0.0.0.0', 'localhost', 'tests.evasoft.app'],
   },
   resolve: {
     alias: {
