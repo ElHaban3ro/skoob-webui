@@ -1,48 +1,52 @@
-import '../css/App.css'
+import "../css/App.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 function Main() {
-    const [user, setUser] = useState(Object);
+  const [user, setUser] = useState(Object);
 
-    useEffect(() => {
-        test()
-    }, [])
+  useEffect(() => {
+    test();
+  }, []);
 
-    const test = async () => {
-        await fetch("http://localhost:3030/users/me", {
-        method: "get",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        credentials: "include"
-        }).catch(() => {
-            console.log("Error");
-        }).then(async (res) => {
-            if (res) {
-            const data = await res.json();
-            setUser(data.content.content);
-            }
-        });
-    }
-    
-    const logout = async () => {
-        await fetch("http://localhost:3030/users/logout", {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        credentials: "include"
-        }).catch(() => {
-            console.log("Error");
-        }).then(async (res) => {
-            if (res) {
-            const data = await res.json();
-            setUser(data.content.content);
-            }
-        });
-    }
+  const test = async () => {
+    await fetch("http://localhost:3030/users/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .catch(() => {
+        console.log("Error");
+      })
+      .then(async (res) => {
+        if (res) {
+          const data = await res.json();
+          setUser(data.content.content);
+        }
+      });
+  };
+
+  const logout = async () => {
+    await fetch("http://localhost:3030/users/logout", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .catch(() => {
+        console.log("Error");
+      })
+      .then(async (res) => {
+        if (res) {
+          const data = await res.json();
+          setUser(data.content.content);
+        }
+      });
+  };
 
   return (
     <>
@@ -51,7 +55,7 @@ function Main() {
         <Button onClick={logout}>LOGOUT</Button>
       </div>
     </>
-  )
+  );
 }
 
-export default Main
+export default Main;
