@@ -1,3 +1,4 @@
+import { skoobApi } from "@/lib/api/client";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -18,20 +19,13 @@ export default function useLogin() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3030/users/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
+      await skoobApi.post(
+        "/users/auth",
+        new URLSearchParams({
           username: credentials.email,
           password: credentials.password,
-        }),
-        credentials: "include",
-      });
-
-      const data = await res.json();
-      console.log(data);
+        })
+      );
 
       toast.success("Logged in successfully", {
         duration: 4000,
