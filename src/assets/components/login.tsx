@@ -9,8 +9,10 @@ import "../css/App.css";
 import useLoginFormData from "@/hooks/useLoginFormData";
 import useGoogleAuthErrorCatcher from "@/hooks/useGoogleAuthErrorCatcher";
 import useLogin from "@/hooks/useLogin";
+import { useNavigate } from "react-router";
 
 function Login() {
+  const navigator = useNavigate();
   const { credentials, handleChange, handleError, error } = useLoginFormData();
 
   const { login, isLoading } = useLogin();
@@ -94,8 +96,8 @@ function Login() {
                   )}
                   {isLoading ? "Connecting..." : "Login"}
                 </Button>
-                <span className="registerspan text-xs underline text-accent">
-                  <a href="http://test.com">I want to register</a>
+                <span className="registerspan text-xs underline text-accent" onClick={() => {navigator('/register')}}>
+                  I want to register
                 </span>
               </div>
             </form>
