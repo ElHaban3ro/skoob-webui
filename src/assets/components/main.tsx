@@ -2,6 +2,7 @@ import "../css/App.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { getApiUrl } from "@/config/api";
 
 function Main() {
   const [user, setUser] = useState(Object);
@@ -9,9 +10,9 @@ function Main() {
   useEffect(() => {
     test();
   }, []);
-
+  const base_url = getApiUrl();
   const test = async () => {
-    await fetch("http://localhost:3030/users/me", {
+    await fetch(base_url +"/users/me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +31,7 @@ function Main() {
   };
 
   const logout = async () => {
-    await fetch("http://localhost:3030/users/logout", {
+    await fetch(base_url + "/users/logout", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
