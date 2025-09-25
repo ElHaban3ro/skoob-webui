@@ -10,6 +10,7 @@ import useLoginFormData from "@/hooks/useLoginFormData";
 import useGoogleAuthErrorCatcher from "@/hooks/useGoogleAuthErrorCatcher";
 import useLogin from "@/hooks/useLogin";
 import { useNavigate } from "react-router";
+import { getApiUrl } from "@/config/api";
 
 function Login() {
   const navigator = useNavigate();
@@ -18,9 +19,10 @@ function Login() {
   const { login, isLoading } = useLogin();
 
   useGoogleAuthErrorCatcher();
+  const api_url = getApiUrl();
 
   const google_auth = () => {
-    window.location.href = "http://localhost:3030/users/auth/google";
+    window.location.href = api_url + "/users/auth/google";
   };
 
   function handleLogin(e: React.FormEvent<HTMLFormElement>) {
