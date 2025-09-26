@@ -11,12 +11,19 @@ body {
   src: url("/src/fonts/worksans.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: PlayFair;  
+  src: url("/src/fonts/playfair.ttf") format("truetype");
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-base-50: #ECE4D9;
   /* Add your custom font family (import the font in a top-level @import or @font-face elsewhere) */
   --font-worksans: 'WorkSans';
+  --font-playfair: 'PlayFair';
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

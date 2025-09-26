@@ -1,9 +1,9 @@
 import "../css/App.css";
-import { Button } from "@/components/ui/button";
 import { getApiUrl } from "@/config/api";
 import { useNavigate } from "react-router";
 import Sidebar from "./minicomponents/sidebar";
 import { useEffect, useState } from "react";
+import Library from "./minicomponents/library";
 
 function Main() {
   const nav = useNavigate();
@@ -61,7 +61,7 @@ function Main() {
     <>
       <div className="main w-full h-screen flex justify-between items-center font-worksans">
         <Sidebar _user={user} logoutFunction={logout} tabSelected={tabSelected} setTabSelected={setTabSelected} />
-
+        {tabSelected === 'library' && <Library user={user} />}
       </div>
     </>
   );
