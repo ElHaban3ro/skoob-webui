@@ -11,6 +11,7 @@ import useGoogleAuthErrorCatcher from "@/hooks/useGoogleAuthErrorCatcher";
 import useLogin from "@/hooks/useLogin";
 import { useNavigate } from "react-router";
 import { getApiUrl } from "@/config/api";
+import {useEffect} from "react";
 
 function Login() {
   const navigator = useNavigate();
@@ -41,6 +42,32 @@ function Login() {
 
     login(credentials);
   }
+
+
+
+  const get_user = async () => {
+    await fetch(api_url + "/users/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .catch(() => {
+        console.log("Error");
+      })
+      .then(async (res) => {
+        if (res) {
+          if (res.status === 200) {
+              navigator('/');
+          }
+        }
+      });
+  };
+
+  useEffect(() => {
+    get_user();
+  }, []);
 
   return (
     <>

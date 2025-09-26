@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import "../css/App.css";
 import useLoginFormData from "@/hooks/useLoginFormData";
 import useGoogleAuthErrorCatcher from "@/hooks/useGoogleAuthErrorCatcher";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getApiUrl } from "@/config/api";
 import { useNavigate } from "react-router";
 
@@ -25,6 +25,31 @@ function Register() {
     };
 
     const nav = useNavigate();
+
+    const get_user = async () => {
+        await fetch(api_url + "/users/me", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        })
+            .catch(() => {
+                console.log("Error");
+            })
+            .then(async (res) => {
+                if (res) {
+                    if (res.status === 200) {
+                        nav('/');
+                    }
+                }
+            });
+    };
+
+    useEffect(() => {
+    get_user();
+    }, []);
+    
 
     async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -66,7 +91,7 @@ function Register() {
                 "Content-Type": "application/json",
             },
             credentials: "include",
-            
+
         })
             .catch(() => {
                 toast.error("Error registering user.", {
