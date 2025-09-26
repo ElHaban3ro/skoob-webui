@@ -9,6 +9,7 @@ function Main() {
   const nav = useNavigate();
   const base_url = getApiUrl();
   const [user, setUser] = useState(Object);
+  const [tabSelected, setTabSelected] = useState("library");
   useEffect(() => {
     get_user();
   }, []);
@@ -59,10 +60,8 @@ function Main() {
   return (
     <>
       <div className="main w-full h-screen flex justify-between items-center font-worksans">
-        <Sidebar _user={user} logoutFunction={logout} />
-        <Button onClick={logout}>LOGOUT</Button>
-        <Button onClick={() => { nav('/login') }}>LOGIN</Button>
-        <Button onClick={() => { nav('/register') }}>REGISTER</Button>
+        <Sidebar _user={user} logoutFunction={logout} tabSelected={tabSelected} setTabSelected={setTabSelected} />
+
       </div>
     </>
   );

@@ -5,7 +5,7 @@ import SkoobLogo from "@/assets/images/skoob.png";
 import { Bookmark } from 'lucide-react';
 import { Menubar, MenubarItem, MenubarMenu, MenubarTrigger, MenubarContent, MenubarSeparator, MenubarLabel } from "@/components/ui/menubar";
 
-function Sidebar({ _user, logoutFunction }: any) {
+function Sidebar({ _user, logoutFunction, tabSelected, setTabSelected }: any) {
 
     const user = _user;
     console.log(user);
@@ -19,20 +19,20 @@ function Sidebar({ _user, logoutFunction }: any) {
             </div>
             <div className="sidebar_mid h-full flex flex-col justify-center items-center gap-4">
                 <div className="sidebar_button">
-                    <Button className="bg-transparent border-0 hover:bg-accent/20 p-0 w-10 h-10">
+                    <Button className={"bg-transparent border-0 hover:bg-accent/20 p-0 w-10 h-10 cursor-pointer " + (tabSelected === 'library' ? 'bg-sidebar-accent' : '')} onClick={() => {setTabSelected('library')}}>
                         <Library className="text-accent" />
                     </Button>
                 </div>
                 <div
                     className="sidebar_button">
-                    <Button className="bg-transparent border-0 hover:bg-accent/20 p-0 w-10 h-10">
-                        <CalendarCheck2 className="text-accent" />
+                    <Button className={"bg-transparent border-0 hover:bg-accent/20 p-0 w-10 h-10 cursor-pointer " + (tabSelected === 'calendar' ? 'bg-sidebar-accent' : '')} onClick={() => {setTabSelected('calendar')}}>
+                        <CalendarCheck2 className="text-accent"  />
                     </Button>
                 </div>
   
                 <div
                     className="sidebar_button">
-                    <Button className="bg-transparent border-0 hover:bg-accent/20 p-0 w-10 h-10">
+                    <Button className={"bg-transparent border-0 hover:bg-accent/20 p-0 w-10 h-10 cursor-pointer " + (tabSelected === 'bookmarks' ? 'bg-sidebar-accent' : '')} onClick={() => {setTabSelected('bookmarks')}}>
                         <Bookmark className="text-accent" />
                     </Button>
                 </div>
