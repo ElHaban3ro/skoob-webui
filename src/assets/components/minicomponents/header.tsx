@@ -4,7 +4,7 @@ import { LockKeyhole } from 'lucide-react';
 function Header({user}:any) {
     return (<div className="header w-full h-[20rem] relative overflow-hidden">
         <div className="header_image absolute bg-[url('@/assets/images/header_image.jpg')] bg-opa bg-cover bg-center w-full h-full blur-xl opacity-50"></div>
-        <div className="header_image absolute bg-cover bg-center w-full h-full bg-background/50"></div>
+        <div className="header_image absolute bg-cover bg-center w-full h-full bg-background/15"></div>
         <div className="header_content relative z-10 h-full flex justify-between items-center flex-row">
             <div className="left_header  h-full flex flex-col justify-center items-start font-playfair text-accent pl-14">
                 <p className="text-[3rem] w-[40rem] ">Welcome Back, <span className="italic">{user.name}!</span></p>
