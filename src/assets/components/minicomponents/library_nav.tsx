@@ -70,7 +70,7 @@ function LibraryNav({get_books}: any) {
     };
 
     return (
-        <div className="library_title w-full bg-background flex flex-row justify-between items-center p-4  text-[1.5rem] pr-[3rem] pl-[3rem] ">
+        <div className="library_title w-full bg-background flex flex-row justify-between items-center p-4  text-[1.5rem] pr-[3rem] pl-[3rem] sticky top-0 z-20 ">
             <div className="title font-playfair text-accent font-bold">
                 <h3>Mi Librería</h3>
             </div>
