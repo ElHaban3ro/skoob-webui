@@ -15,13 +15,13 @@ export default function Book({ book }: { book: BookType }) {
       <div className="book_content relative z-10 text-white flex justify-start items-center flex-col h-full w-full p-4">
         <img
           src={bookCoverUrl}
-          alt={book.title}
+          alt={book?.title}
           className="book_cover w-full h-45 object-cover flex-1 rounded-[0.5rem] "
         />
         <div className="book_info w-full pr-1 pl-1 pt-3">
-          <p className="font-bold line-clamp-2 ">{book.title}</p>
-          <p className="text-[0.8rem] ">{book.author} </p>
-          <p className="text-[0.8rem]">{book.book_charapters} Partes</p>
+          <p className="font-bold line-clamp-2 ">{book?.title}</p>
+          <p className="text-[0.8rem] ">{book?.author} </p>
+          <p className="text-[0.8rem]">{book?.book_charapters} Partes</p>
         </div>
       </div>
     </div>
