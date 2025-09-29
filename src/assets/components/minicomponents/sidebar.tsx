@@ -12,12 +12,17 @@ import {
   MenubarSeparator,
   MenubarLabel,
 } from "@/components/ui/menubar";
-import type { User } from "@/types/user";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import useAuth from "@/hooks/useAuth";
 
-function Sidebar({ _user, logoutFunction, tabSelected, setTabSelected }: any) {
-  const user: User = _user;
-  console.log(user);
-  console.log(user.email);
+interface SidebarProps {
+  tabSelected: string;
+  setTabSelected: (tab: string) => void;
+}
+
+function Sidebar({ tabSelected, setTabSelected }: SidebarProps) {
+  const { currentUser } = useCurrentUser();
+  const { logout } = useAuth();
 
   return (
     <div className="sidebar h-screen w-[4rem] flex flex-col justify-between items-center py-4 bg-gradient-to-r from-orange-50 to-slate-50">
@@ -72,20 +77,22 @@ function Sidebar({ _user, logoutFunction, tabSelected, setTabSelected }: any) {
           <MenubarMenu>
             <MenubarTrigger className="w-14 p-1 rounded-full cursor-pointer">
               <img
-                src={user.image}
+                src={currentUser?.image}
                 alt="User Image"
                 className="w-10 rounded-full cursor-pointer"
               />
             </MenubarTrigger>
             <MenubarContent className="bg-white">
-              <MenubarLabel className="font-semibold">{user.name}</MenubarLabel>
+              <MenubarLabel className="font-semibold">
+                {currentUser?.name}
+              </MenubarLabel>
 
               <MenubarItem>Settings</MenubarItem>
               <MenubarItem>Payments</MenubarItem>
               <MenubarSeparator />
               <MenubarItem
                 onClick={() => {
-                  logoutFunction();
+                  logout();
                 }}
               >
                 Log Out

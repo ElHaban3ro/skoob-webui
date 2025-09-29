@@ -1,16 +1,10 @@
-import { getCurrentUser, login, logout } from "@/api/querys/auth";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { login, logout } from "@/api/querys/auth";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
 export default function useAuth() {
   const nav = useNavigate();
-
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["current-user"],
-    queryFn: getCurrentUser,
-    retry: false,
-  });
 
   const { mutate: loginMutation, isPending: isLoginPending } = useMutation({
     mutationFn: login,
@@ -40,9 +34,6 @@ export default function useAuth() {
   });
 
   return {
-    currentUser: data,
-    isErrorGettingCurrentUser: isError,
-    isLoadingCurrentUser: isLoading,
     login: loginMutation,
     isLogging: isLoginPending,
     logout: logoutMutation,
